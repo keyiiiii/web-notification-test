@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+  <script>
+    function show() {
+      var Notification = window.Notification || window.mozNotification || window.webkitNotification;
+
+      Notification.requestPermission(function (permission) {
+        console.log(permission);
+      });
+
+      var instance = new Notification(
+        "タイトル",
+        {
+          body: "aa\r\naa",
+          icon: "http://dummyimage.com/100x100/000/fff.png",
+        }
+      );
+      console.warn("instance", instance);
+      instance.onclick = function () {
+        window.open("https://abema.tv");
+        console.log("onclick");
+      };
+      instance.onerror = function () {
+        console.log("onerror");
+      };
+      instance.onshow = function () {
+        console.log("onshow");
+      };
+      instance.onclose = function () {
+        console.log("onclose");
+      };
+    }
+</script>
+<button type="button" onclick="show()">通知</button>
+</body>
+</html>
